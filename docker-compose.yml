@@ -6,13 +6,13 @@ services:
     container_name: openchamber
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    # volumes:
-    #  - ./data/openchamber:/home/openchamber/.config/openchamber
-    #  - ./data/opencode/share:/home/openchamber/.local/share/opencode
-    #  - ./data/opencode/state:/home/openchamber/.local/state/opencode
-    #  - ./data/opencode/config:/home/openchamber/.config/opencode
-    #  - ./data/ssh:/home/openchamber/.ssh
-    #  - ./workspaces:/home/openchamber/workspaces
+    volumes:
+      - ./data/openchamber:/home/openchamber/.config/openchamber
+      - ./data/opencode/share:/home/openchamber/.local/share/opencode
+      - ./data/opencode/state:/home/openchamber/.local/state/opencode
+      - ./data/opencode/config:/home/openchamber/.config/opencode
+      - ./data/ssh:/home/openchamber/.ssh
+      - ./workspaces:/home/openchamber/workspaces
     environment:
       OPENCHAMBER_HOST: 0.0.0.0  # Bind address (default in Docker: 0.0.0.0)
       UI_PASSWORD: ${UI_PASSWORD:?}  # Uncomment to set UI password
