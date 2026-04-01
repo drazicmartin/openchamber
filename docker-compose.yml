@@ -7,14 +7,22 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - ./data/openchamber:/home/openchamber/.config/openchamber
-      - ./data/opencode/share:/home/openchamber/.local/share/opencode
-      - ./data/opencode/state:/home/openchamber/.local/state/opencode
-      - ./data/opencode/config:/home/openchamber/.config/opencode
-      - ./data/ssh:/home/openchamber/.ssh
-      - ./workspaces:/home/openchamber/workspaces
+      - openchamber_config:/home/openchamber/.config/openchamber
+      - opencode_share:/home/openchamber/.local/share/opencode
+      - opencode_state:/home/openchamber/.local/state/opencode
+      - opencode_config:/home/openchamber/.config/opencode
+      - ssh_data:/home/openchamber/.ssh
+      - workspaces_data:/home/openchamber/workspaces
     environment:
       OPENCHAMBER_HOST: 0.0.0.0  # Bind address (default in Docker: 0.0.0.0)
       UI_PASSWORD: ${UI_PASSWORD:?}  # Uncomment to set UI password
       OH_MY_OPENCODE: true # enable oh-my-opencode
     restart: unless-stopped
+
+volumes:
+  openchamber_config:
+  opencode_share:
+  opencode_state:
+  opencode_config:
+  ssh_data:
+  workspaces_data:
